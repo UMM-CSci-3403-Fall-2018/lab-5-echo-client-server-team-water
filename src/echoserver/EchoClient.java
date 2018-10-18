@@ -20,16 +20,17 @@ public class EchoClient {
       Socket socket = new Socket(server, portNumber);
 
       DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
-      Scanner scanner = new Scanner(System.in);
-      byte k;
+      // Scanner scanner = new Scanner(System.in);
+      int k;
       DataInputStream inStream = new DataInputStream(socket.getInputStream());
       byte b;
 
-      while(scanner.hasNextByte()){
-        k = scanner.nextByte();
-        outStream.writeByte(k);
+      while((k = System.in.read()) != -1){
+        // k = scanner.nextByte();
+        outStream.writeByte((byte) k);
+
         b = inStream.readByte();
-        System.out.print(b);
+        System.out.write(b);
       }
 
       socket.close();
